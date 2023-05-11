@@ -1,0 +1,157 @@
+﻿@model IEnumerable<Peak.Queries.GetCategoryResult>
+@{
+    ViewData["Title"] = "GetCategoryView";
+    // check for the start date and enddate passed from controller
+    var startDate = ViewData["StartDate"] == null ? DateTime.Now : ViewData["StartDate"];
+    var endDate = ViewData["EndDate"] == null ? DateTime.Now : ViewData["EndDate"];
+
+    //C# DateTime to Html
+    var startDateHtml = Convert.ToDateTime(startDate).ToString("yyyy-MM-dd HH:mm:ss");
+    var endDateHtml = Convert.ToDateTime(endDate).ToString("yyyy-MM-dd HH:mm:ss");
+}
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content=
+        "width=device-width, initial-scale=1.0">
+
+      <style>
+        #container {
+            /*Making the container a flexbox*/
+            display: flex;
+            /*Making equal spaced divs*/
+            justify-content: space-between;
+            background-color: lightyellow;
+        }
+  
+        .box {
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () // exectues after complete page load
+        { 
+            $('#dateForm').on('submit', function() // Execute on click submit functions  
+            {
+                var startDate = new Date(Date.parse($('#startDate').val())); // Date.parse converts the string or number into date object
+                var endDate = new Date(Date.parse($('#endDate').val()));
+
+                if(endDate >= startDate)
+                {
+                    return true;
+                } 
+                else
+                { 
+                    alert("End date should be after Start Date !!!");
+                    return false;
+                }
+            });
+        });
+    </script>
+</head>
+
+<h1>Get Category Results</h1>
+
+<form id="dateForm" method="get" action="@Url.Action("GetCategoryView", "SopOrders")">
+<div id="container">
+    
+    <div class="content">
+        <label for="meeting-time">Start Date</label>
+       <input type="datetime-local" id="startDate"
+            name="startDate" step="any" value="@startDateHtml" />
+    </div>
+    <div class="content">
+        <label for="meeting-time">End Date</label>
+
+        <input type="datetime-local" id="endDate"
+            name="endDate" step="any" value="@endDateHtml" />
+
+    </div>
+    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+<div class="form-group">
+            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        
+    <div class="content">
+        <input type="submit" class="btn btn-primary" />
+    </div>
+
+</div>
+
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+              Method-Name
+            </th>
+            <th>
+              Date
+            </th>
+            <th>
+              Sales
+            </th>
+            <th>
+              Max-Order
+            </th>
+            <th>
+              Order-Count
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderMethodName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sales)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.max_Order)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderCount)
+                </td>
+            </tr>
+        }
+        <tr>
+                <td><b>
+                    Totals
+                </b>
+                <td>
+
+                </td>
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    @ViewData["TotalSales"]
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    @ViewData["TotalOrder"]
+                </td>
+            </tr>
+    </tbody>
+</table>
+

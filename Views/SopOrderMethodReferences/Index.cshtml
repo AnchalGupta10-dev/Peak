@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Peak.Models.SopOrderMethodReference>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateScsUserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateTimeStampUtc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateScsSqlUserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateScsUserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateTimeStampUtc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateScsSqlUserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionGuid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderMethodCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderMethodName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserSelectable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SopSalesChannelReference)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateScsUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateTimeStampUtc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateScsSqlUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateScsUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateTimeStampUtc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateScsSqlUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionGuid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderMethodCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderMethodName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserSelectable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SopSalesChannelReference.SopSalesChannelReferenceId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SopOrderMethodReferenceId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SopOrderMethodReferenceId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SopOrderMethodReferenceId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

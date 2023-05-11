@@ -1,0 +1,81 @@
+﻿@model Peak.Models.SopOrderMethodReference
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>SopOrderMethodReference</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SopOrderMethodReferenceId" />
+            <div class="form-group">
+                <label asp-for="CreateScsUserId" class="control-label"></label>
+                <input asp-for="CreateScsUserId" class="form-control" />
+                <span asp-validation-for="CreateScsUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreateTimeStampUtc" class="control-label"></label>
+                <input asp-for="CreateTimeStampUtc" class="form-control" />
+                <span asp-validation-for="CreateTimeStampUtc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreateScsSqlUserId" class="control-label"></label>
+                <input asp-for="CreateScsSqlUserId" class="form-control" />
+                <span asp-validation-for="CreateScsSqlUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdateScsUserId" class="control-label"></label>
+                <input asp-for="UpdateScsUserId" class="form-control" />
+                <span asp-validation-for="UpdateScsUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdateTimeStampUtc" class="control-label"></label>
+                <input asp-for="UpdateTimeStampUtc" class="form-control" />
+                <span asp-validation-for="UpdateTimeStampUtc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdateScsSqlUserId" class="control-label"></label>
+                <input asp-for="UpdateScsSqlUserId" class="form-control" />
+                <span asp-validation-for="UpdateScsSqlUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransactionGuid" class="control-label"></label>
+                <input asp-for="TransactionGuid" class="form-control" />
+                <span asp-validation-for="TransactionGuid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderMethodCode" class="control-label"></label>
+                <input asp-for="OrderMethodCode" class="form-control" />
+                <span asp-validation-for="OrderMethodCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderMethodName" class="control-label"></label>
+                <input asp-for="OrderMethodName" class="form-control" />
+                <span asp-validation-for="OrderMethodName" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="UserSelectable" /> @Html.DisplayNameFor(model => model.UserSelectable)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="SopSalesChannelReferenceId" class="control-label"></label>
+                <select asp-for="SopSalesChannelReferenceId" class="form-control" asp-items="ViewBag.SopSalesChannelReferenceId"></select>
+                <span asp-validation-for="SopSalesChannelReferenceId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

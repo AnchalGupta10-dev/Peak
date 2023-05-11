@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Peak.Queries.GetTopFiveProductsResult>
+@{
+    ViewData["Title"] = "GetTopFiveProductsView";
+    var startDate = ViewData["StartDate"] == null? DateTime.Now : ViewData["StartDate"];
+    var endDate = ViewData["EndDate"] == null? DateTime.Now : ViewData["EndDate"];
+
+    var startDateHtml = Convert.ToDateTime(startDate).ToString("yyyy-MM-dd HH:mm:ss");
+    var endDateHtml = Convert.ToDateTime(endDate).ToString("yyyy-MM-dd HH:mm:ss");
+
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content=
+        "width=device-width, initial-scale=1.0">
+          
+    <style>
+        #container {
+            /*Making the container a flexbox*/
+            display: flex;
+            /*Making equal spaced divs*/
+            justify-content: space-between;
+            background-color: lightyellow;
+        }
+  
+        .box {
+        }
+    </style>
+</head>
+
+
+<h1>Get Top Five Products Results</h1>
+
+<form method="get" action="@Url.Action("GetTopFiveProductView", "SopOrders")">
+<div id="container">
+    
+    <div class="content">
+        <label for="meeting-time">Start Date</label>
+       <input type="datetime-local" id="startDate"
+            name="startDate" step="any" value="@startDateHtml" />
+    </div>
+    <div class="content">
+        <label for="meeting-time">End Date</label>
+
+        <input type="datetime-local" id="endDate"
+            name="endDate" step="any" value="@endDateHtml" />
+
+    </div>
+    <div class="content">
+        <input type="submit" class="btn btn-primary" />
+    </div>
+
+</div>
+
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DATE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderMethodName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderLineCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rank)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DATE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderMethodName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderLineCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rank)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
